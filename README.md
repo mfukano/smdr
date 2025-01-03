@@ -6,15 +6,12 @@ SMDR is a small utility to quickly check the general formatting of a markdown fi
 
 It's inspired by [grip](https://github.com/joeyespo/grip),
 which does a lot more than this and is rad, but also leverages the browser.
-I tend to have oceans of tabs open in my browser when I'm coding because
-my memory is **notoriously poor** (except for specific things;
-ask my friends about my ability to be an encyclopedia for powerups in roguelike games).
+I tend to have oceans of tabs open in my browser when I'm coding or writing,
+so having a document preview share browser space with something else I'm potentially
+looking at or using is kind of annoying.
 
-Instead, it constructs a webview and injects it with local Github Markdown stylesheets
+Instead, SMDR constructs a webview and injects it with local Github Markdown stylesheets
 (c.o. [sindresorhus/github-markdown-css](https://github.com/sindresorhus/github-markdown-css)).
-
-Ideally it will be a single file executable with basic options for light
-and dark mode.
 
 ## Installation
 
@@ -50,6 +47,12 @@ alias smdr="/Users/mat/programs/smdr -f"
 but if you're compiling it yourself you can put the bin anywhere and
 change the path easily. All of the relevant stylesheets in the project
 should be aliased and embedded into the executable.
+
+## Configuration
+
+Currently dark and light mode default sheets are included but no options
+yet to change them in GUI.
+Check line 15 of `index.tsx` if building for yourself.
 
 ## Shoutout Bun for being awesome
 
