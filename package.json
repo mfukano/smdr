@@ -1,0 +1,20 @@
+{
+  "name": "sdr_bun",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "marked": "^15.0.5",
+    "webview-bun": "^2.3.0"
+  },
+  "scripts": {
+    "start": "bun run index.ts",
+    "view": "bun run index.ts --f",
+    "build:dev": "bun build --compile --asset-naming='[name].[ext]' ./index.ts ./css/*.css --outfile bin/smdr"
+  }
+}
