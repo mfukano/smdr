@@ -4,7 +4,8 @@
 
 SMDR is a small utility to quickly check the general formatting of a markdown file.
 
-It's inspired by grip, which does a lot more than this, but also leverages the browser.
+It's inspired by [grip](https://github.com/joeyespo/grip),
+which does a lot more than this and is rad, but also leverages the browser.
 I tend to have oceans of tabs open in my browser when I'm coding because
 my memory is **notoriously poor** (except for specific things;
 ask my friends about my ability to be an encyclopedia for powerups in roguelike games).
