@@ -36,7 +36,7 @@ function getPathFromArgs() {
   return path;
 }
 
-async function fileTextFromPath(path?: string) {
+async function fileTextFromPath(path: string | null) {
   const html = INDEX;
 
   if (!path) {
@@ -87,10 +87,10 @@ ${styledMarkup}`);
 async function runWebview(path: string | null) {
   if (!path) {
     // set different HTML here
-    console.warn(`Error: values doesn't contain a flag`);
+    console.warn(`WARNING: values doesn't contain a flag`);
   }
 
-  const fileTextToRender = await fileTextFromPath(path!);
+  const fileTextToRender = await fileTextFromPath(path);
   const styledMarkup = buildStyledMarkup(fileTextToRender);
 
   const webview = new Webview();
@@ -98,11 +98,13 @@ async function runWebview(path: string | null) {
   webview.run();
 }
 
+/*
 console.log(`check embedded files`);
 
 Bun.embeddedFiles.forEach((f, i) => {
   console.log(`#${i} name: ${f.name}`);
 });
+*/
 
 const path = getPathFromArgs();
 await runWebview(path);
