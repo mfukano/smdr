@@ -1,5 +1,6 @@
 {
-  "name": "sdr_bun",
+  "name": "smdr",
+  "author": "Mat Fukano",
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
