@@ -174,5 +174,8 @@ dist
 # Finder (MacOS) folder config
 .DS_Store
 
+# Oh, so we're not committing bins now?
+bin/
+
 # Todo
 TODO.md
