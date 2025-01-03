@@ -24,10 +24,10 @@ function getPathFromArgs() {
     allowPositionals: true,
   });
 
+  /*
   console.log(values);
   console.log(positionals);
-
-  console.log(positionals[2]);
+  */
 
   const path = values.f ? values.f : null;
 
