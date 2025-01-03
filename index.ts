@@ -12,6 +12,8 @@ const GLOBAL_STYLES = await Bun.file(globalStyles).text();
 const GH_DARK = await Bun.file(ghDark).text();
 const GH_LIGHT = await Bun.file(ghLight).text();
 
+const THEME = GH_DARK; // GH_LIGHT also valid
+
 function getPathFromArgs() {
   const { values, positionals } = parseArgs({
     args: Bun.argv,
@@ -61,7 +63,7 @@ function buildStyledMarkup(markup: string) {
       <title>Hey There Delilah</title>
       <style>
         ${GLOBAL_STYLES}
-        ${GH_DARK}
+        ${THEME}
       </style>
     </head>
     <body>
