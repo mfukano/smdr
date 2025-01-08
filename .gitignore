@@ -176,6 +176,4 @@ dist
 
 # Oh, so we're not committing bins now?
 bin/
-
-# Todo
-TODO.md
+doc/
