@@ -19,6 +19,7 @@ article {
   height: 100%;
   width: 100%;
   padding: 20px;
+  overflow: scroll;
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
