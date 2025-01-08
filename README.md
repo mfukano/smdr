@@ -33,21 +33,6 @@ To build:
 bun build:dev
 ```
 
-I also recommend aliasing it, since it can be annoying to type options - especially
-for a binary that has _exactly one_ right now, but my dream is to potentially
-make this bidirectional and a seamless click-in editor. (far-flung, maybe)
-
-I'm using `zsh` with a dedicated `.zsh_aliases` file, so my setup
-looks kinda like this:
-
-```bash
-alias smdr="/Users/mat/programs/smdr -f"
-```
-
-but if you're compiling it yourself you can put the bin anywhere and
-change the path easily. All of the relevant stylesheets in the project
-should be aliased and embedded into the executable.
-
 ## Configuration
 
 Currently dark and light mode default sheets are included but no options
