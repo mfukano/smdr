@@ -1,21 +1,23 @@
 {
   "name": "smdr",
   "author": "Mat Fukano",
+  "verison": "0.0.1",
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest"
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
   "dependencies": {
     "marked": "^15.0.5",
-    "webview-bun": "^2.3.0"
+    "webview-bun": "^2.3.0",
+    "typescript": "^5.0.0"
   },
   "scripts": {
     "start": "bun run index.ts",
-    "view": "bun run index.ts --f",
-    "build:dev": "bun build --compile --asset-naming='[name].[ext]' ./index.ts ./css/*.css --outfile bin/smdr"
+    "start:w": "bun run --watch index.ts",
+    "start:h": "bun run --hot index.ts",
+    "build:dev": "bun build --compile --asset-naming='[name].[ext]' ./index.ts ./css/*.css --outfile bin/smdr",
+    "build:old": "bun build --compile --asset-naming='[name].[ext]' ./index.html ./index.ts ./css/*.css --outfile bin/smdr",
+    "build:exp": "bun build --compile --asset-naming='[name].[ext]' --experimental-html --experimental-css ./index.html ./index.ts ./css/*.css --outfile bin/smdr_exp"
   }
 }
