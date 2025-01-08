@@ -15,23 +15,10 @@ const GH_LIGHT = await Bun.file(ghLight).text();
 const THEME = GH_DARK; // GH_LIGHT also valid
 
 function getPathFromArgs() {
-  const { values, positionals } = parseArgs({
-    args: Bun.argv,
-    options: {
-      f: {
-        type: "string",
-      },
-    },
-    strict: true,
-    allowPositionals: true,
-  });
-
-  /*
-  console.log(values);
-  console.log(positionals);
-  */
-
-  const path = values.f ? values.f : null;
+  const path = Bun.argv[2] || null;
+  if (!path) {
+    console.warn("No path provided");
+  }
 
   return path;
 }
@@ -40,18 +27,26 @@ async function fileTextFromPath(path: string | null) {
   const html = INDEX;
 
   if (!path) {
-    return await html.text();
+    return { fileName: "index.html", fileText: await html.text() };
   }
 
   const fileMarkdown = Bun.file(path);
-  const fileMarkdownText = await fileMarkdown.text();
-  const fileMarkup = marked.parse(fileMarkdownText);
 
-  const fileText =
-    fileMarkup.toString().length === 0 ? await html.text() : fileMarkup;
+  if (!fileMarkdown.exists()) {
+    throw new Error("File does not exist or wasn't found");
+  }
 
-  // console.log(`<fileTextFromPath()> [fileText]: ${fileText}`);
-  return fileText;
+  const fileName = fileMarkdown.name!.split("/").pop(); // all files have names...right?
+  const fileMarkup = marked.parse(await fileMarkdown.text());
+
+  if (fileMarkup.toString().length === 0) {
+    throw new Error(
+      "File appears to have zero length, or was unparseable; is something wrong with your file?",
+    );
+  }
+
+  // we need to await fileMarkup because we need to guarantee marked.parse has text to process
+  return { fileName: fileName, fileText: await fileMarkup };
 }
 
 function buildStyledMarkup(markup: string) {
@@ -60,7 +55,6 @@ function buildStyledMarkup(markup: string) {
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <title>Hey There Delilah</title>
       <style>
         ${GLOBAL_STYLES}
         ${THEME}
@@ -90,17 +84,19 @@ async function runWebview(path: string | null) {
     console.warn(`WARNING: values doesn't contain a flag`);
   }
 
-  const fileTextToRender = await fileTextFromPath(path);
-  const styledMarkup = buildStyledMarkup(fileTextToRender);
+  const { fileName, fileText } = await fileTextFromPath(path);
+  const styledMarkup = buildStyledMarkup(fileText);
 
   const webview = new Webview();
+  webview.title = fileName!;
   webview.setHTML(styledMarkup);
   webview.run();
 }
 
-/*
 console.log(`check embedded files`);
 
+/*
+// embedded file logging 
 Bun.embeddedFiles.forEach((f, i) => {
   console.log(`#${i} name: ${f.name}`);
 });
